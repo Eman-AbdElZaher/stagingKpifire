@@ -1,0 +1,104 @@
+.navbar {
+  height: 3.25rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1020;
+  background-color: rgba(29, 40, 53, 0.95);
+
+  .container-fluid {
+    display: flex;
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+
+      .desktop-toggler {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: auto;
+
+        .menu-toggler {
+          border: none;
+          background: 0 0;
+          height: 100%;
+          padding: 0.5rem 1rem;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+
+          .bar {
+            width: 1.625rem;
+            display: block;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.2s linear;
+          }
+        }
+      }
+
+      .navbar-brand {
+        height: 100%;
+        width: 18.875rem;
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        img {
+          width: 150px;
+        }
+      }
+    }
+    a.nav-link {
+      color: #fff;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      span.material-icons {
+        width: 20px;
+        color: #fff;
+      }
+      .nav-link {
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 25px;
+      }
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 1;
+      margin-right: 30px;
+
+      .menu-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        .nav-link {
+          text-decoration: none;
+          position: relative;
+          padding: 0.5rem 1rem;
+          display: flex;
+          align-items: center;
+
+          i {
+            font-size: 1.25rem;
+          }
+        }
+      }
+
+      .user-img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+

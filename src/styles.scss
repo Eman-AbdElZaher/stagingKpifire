@@ -1,1 +1,343 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/theme/variables";
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+h2 {
+  font-family: "Chakra Petch", sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  position: relative;
+  margin: 0;
+  margin: 0;
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  background: 0 0;
+  min-height: 100vh;
+  z-index: 999;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-attachment: initial;
+  background-color: transparent;
+  background-image: $body-bg-image;
+  background-size: $body-bg-image-size;
+  background-repeat: repeat;
+  background-attachment: initial;
+  z-index: -5;
+}
+html::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: -10;
+  background-color: $body-bg-color;
+  background-image: $body-bg-gradient;
+  background-image: $body-bg-cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: initial;
+  height: 100%;
+  transition: background 0.2s linear;
+  background-size: cover;
+}
+html:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -5;
+  background: $body-bg-gradient;
+}
+
+button {
+  outline: none !important;
+  border: none;
+  background-color: transparent;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $main-color;
+  outline: 1px solid $main-color;
+  border-radius: 10px;
+}
+input {
+  border: none;
+  outline: none;
+}
+input:focus {
+  outline: none !important;
+}
+
+// --------------- our Framework----------
+.fs-20px {
+  font-size: 20px !important;
+}
+.fs-16px {
+  font-size: 16px !important;
+}
+.w-300px {
+  width: 300px !important;
+}
+
+.fs-11px {
+  font-size: 11px !important;
+}
+.pt-1 {
+  padding-top: 0.25rem !important;
+}
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.fs-10px {
+  font-size: 10px !important;
+}
+.mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+.py-10px {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+.text-wrap {
+  white-space: normal !important;
+}
+
+.fw-semibold {
+  font-weight: 500 !important;
+}
+.flex-1 {
+  flex: 1 !important;
+}
+
+.ps-3 {
+  padding-left: 1rem !important;
+}
+.text-opacity-50 {
+  --bs-text-opacity: 0.5;
+}
+.text-inverse {
+  --bs-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--bs-text-opacity)) !important;
+}
+.text-theme {
+  --bs-text-opacity: 1;
+  color: rgba($secondary-color, var(--bs-text-opacity)) !important;
+}
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: unset !important;
+  color: #fff;
+}
+// =====================Styling Card Component==================
+.card-container {
+  --bs-border-color-rgb: 255, 255, 255;
+  position: relative;
+  border: none;
+  padding: 1rem 1rem;
+}
+.card-container:after,
+.card-container:before {
+  content: "";
+  position: absolute;
+}
+.card-container:before {
+  left: 15px;
+  right: 15px;
+  top: 0;
+  bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.card-container:after {
+  top: 15px;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+.card-container .card-arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.card-container .card-arrow-bottom-left,
+.card-container .card-arrow-bottom-right,
+.card-container .card-arrow-top-left,
+.card-container .card-arrow-top-right {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+}
+.card-container .card-arrow-bottom-left:before,
+.card-container .card-arrow-bottom-right:before,
+.card-container .card-arrow-top-left:before,
+.card-container .card-arrow-top-right:before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.card-container .card-arrow-bottom-left:after,
+.card-container .card-arrow-bottom-right:after,
+.card-container .card-arrow-top-left:after,
+.card-container .card-arrow-top-right:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.card-container .card-arrow-bottom-left,
+.card-container .card-arrow-top-left {
+  left: 0;
+}
+.card-containet .card-arrow-top-left,
+.card-container .card-arrow-top-right {
+  top: 0;
+}
+.card-arrow-top-right,
+.card-arrow-bottom-right {
+  right: 0;
+}
+.card-arrow-bottom-left,
+.card-arrow-bottom-right {
+  bottom: 0;
+}
+.card-arrow-bottom-left:after,
+.card-arrow-bottom-left:before,
+.card-arrow-top-left:after,
+.card-arrow-top-left:before {
+  left: 0;
+}
+.card-arrow-top-left:before,
+.card-arrow-top-right:before {
+  top: 2px;
+}
+.card-arrow-bottom-left:after,
+.card-arrow-bottom-left:before,
+.card-arrow-top-left:after,
+.card-arrow-top-left:before {
+  left: 0;
+}
+.card-arrow-top-left:after,
+.card-arrow-top-right:after {
+  top: 0;
+}
+.card-arrow-bottom-right:after,
+.card-arrow-bottom-right:before,
+.card-arrow-top-right:after,
+.card-arrow-top-right:before {
+  right: 0;
+}
+.card-arrow-bottom-left:before,
+.card-arrow-bottom-right:before {
+  bottom: 2px;
+}
+.card-arrow-bottom-left:after,
+.card-arrow-bottom-right:after {
+  bottom: 0;
+}
+// ================================ dropDownMenu style ===============
+.dropdown-menu {
+  background-color: rgba(29, 40, 53, 0.95);
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(var(255, 255, 255), 0.075);
+
+  .dropdown-header {
+    font-size: 15px;
+    display: block;
+    padding: 5px 10px;
+  }
+  .dropdown-divider {
+    height: 0;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    opacity: 1;
+  }
+  .dropdown-item {
+    color: #fff;
+  }
+}
+.dropdown-menu-end[data-bs-popper] {
+  top: 100%;
+  right: 0;
+  left: auto;
+}
+.fs-11px {
+  font-size: 11px !important;
+}
+.mt-1 {
+  margin-top: 0.25rem !important;
+}
+.bar + .bar {
+  margin-top: 0.25rem;
+}
+.dropdown-menu.show {
+  animation: appDropDownShow 0.25s both cubic-bezier(0.7, 0, 0.3, 1);
+}
+@media (min-width: 992px) {
+  .me-lg-3 {
+    margin-right: 1rem !important;
+  }
+}
+@media screen and (max-width: 772px) {
+  .navbar-brand {
+    display: none;
+  }
+}
+@keyframes appDropDownShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.mat-mdc-checkbox label {
+  color: #fff;
+}
+.mdc-checkbox
+  .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+    [data-indeterminate="true"]
+  )
+  ~ .mdc-checkbox__background {
+  border-color: #fff !important;
+  background-color: transparent;
+}

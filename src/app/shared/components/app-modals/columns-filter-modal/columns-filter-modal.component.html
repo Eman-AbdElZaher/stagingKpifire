@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>Filter View Columns</h1>
+  <hr />
+  <div mat-dialog-content>
+    <div class="column-container" *ngFor="let column of data.columns">
+      <mat-checkbox color="primary" [(ngModel)]="column.selected">{{
+        column.name
+      }}</mat-checkbox>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()" color="primary">Done</button>
+  </div>
+</div>

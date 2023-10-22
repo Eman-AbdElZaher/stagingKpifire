@@ -1,0 +1,38 @@
+<aside id="sidebar" [class.collapsed]="isMenuCollapsed">
+  <div class="menu-item active">
+    <a href="#" class="menu-link">
+      <span class="menu-icon"><i class="bi bi-cpu"></i></span>
+      <span class="menu-text">Dashboard</span>
+    </a>
+  </div>
+  <div
+    #menuItem
+    *ngFor="let item of menuItems"
+    class="menu-item has-sub"
+    (click)="toggleSubMenu(menuItem)"
+  >
+    <a href="{{ item.menuLink }}" class="menu-link">
+      <span class="menu-icon">
+        <i class="{{ item.menuIcon }}"></i>
+      </span>
+      <span class="menu-text">{{ item.menuText }}</span>
+      <span *ngIf="item.hasSubMenu" class="menu-caret"
+        ><b class="caret"></b
+      ></span>
+    </a>
+    <ng-container *ngIf="item.hasSubMenu">
+      <div class="sub-menu">
+        <div *ngFor="let subMenu of item.subMenu" class="menu-submenu">
+          <div class="menu-item">
+            <a href="{{ subMenu.menuSubLink }}" class="menu-link">
+              <span class="menu-icon">
+                <i class="{{ subMenu.menuSubIcon }}"></i>
+              </span>
+              <span class="menu-text">{{ subMenu.menuSubText }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</aside>

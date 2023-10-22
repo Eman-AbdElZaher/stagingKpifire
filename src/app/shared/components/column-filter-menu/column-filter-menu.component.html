@@ -1,0 +1,20 @@
+<div class="menu">
+  <button mat-menu-item>
+    <mat-icon>arrow_upward_alt</mat-icon>
+    <span>sort asending</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>arrow_downward_alt</mat-icon>
+    <span>sort descending</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>cancel</mat-icon>
+    <span>clear filter</span>
+  </button>
+  <div class="content"><ng-content></ng-content></div>
+  <mat-divider></mat-divider>
+  <div class="filter-actions">
+    <button mat-button color="primary">OK</button>
+    <button mat-button>CANCEL</button>
+  </div>
+</div>

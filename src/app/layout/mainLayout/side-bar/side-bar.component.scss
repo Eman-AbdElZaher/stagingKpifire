@@ -1,0 +1,94 @@
+aside {
+  position: relative;
+  width: 16.875rem;
+  height: 100%;
+  bottom: 0;
+  position: fixed;
+  top: 3.25rem;
+  z-index: 1010;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  // background-color: #1d2835f2;
+  padding-top: 30px;
+  .menu-item {
+    .menu-link {
+      font-size: 16px;
+      font-weight: 300;
+      text-decoration: none;
+      position: relative;
+      padding: 0.3rem 1rem;
+      color: rgba(255, 255, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      transition: all 0.2s ease-in-out;
+
+      .menu-icon {
+        width: 1.875rem;
+        height: 1.875rem;
+        font-size: 1.05rem;
+        margin: -0.25rem 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.75rem;
+      }
+      .menu-text {
+        flex: 1;
+      }
+      .menu-caret {
+        margin: -0.3125rem 0;
+        .caret:before {
+          content: "\f22c";
+          display: inline-block;
+          font-family: bootstrap-icons !important;
+          font-style: normal;
+          font-weight: 400 !important;
+          font-variant: normal;
+          text-transform: none;
+          line-height: 1;
+          vertical-align: -0.125em;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      }
+    }
+    .menu-submenu {
+      background: 0 0;
+      // padding: 0 0 1rem;
+      .menu-item {
+        position: relative;
+        padding-left: 2.625rem;
+      }
+    }
+  }
+}
+.active .menu-link {
+  color: #fff !important;
+}
+.sub-menu {
+  display: none;
+}
+.sub-menu .menu-link {
+  padding: 5px 0 16px;
+}
+.expand .sub-menu {
+  display: block;
+}
+.expand .sub-menu .menu-item {
+  transition: transform 0.3s ease-in-out;
+  animation: appSidebarSubMenuSlideInRight 0.3s both
+    cubic-bezier(0.7, 0, 0.3, 1);
+  transform: translate3d(-100%, 0, 0);
+}
+
+@keyframes appSidebarSubMenuSlideInRight {
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.collapsed {
+  left: -16.875rem;
+}

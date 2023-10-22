@@ -1,0 +1,9 @@
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .column-container {
+    width: 48%;
+  }
+}
