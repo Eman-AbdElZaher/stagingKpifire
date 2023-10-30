@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { goalListService } from '../../../core/services/goalList.service';
 
 interface FilterOption {
@@ -24,90 +25,63 @@ export class FilterOPtionsComponent implements OnInit {
     { title: 'Select state', dataList: [], selected: false },
     { title: 'Select Owner', dataList: [], selected: false },
   ];
-  checkBoxColor: string = '#3CD2A5';
+  checkBoxColor: ThemePalette = 'primary';
+  allComplete: boolean = false;
 
   constructor(private _goalListsevice: goalListService) {}
 
   ngOnInit(): void {
     this._goalListsevice.getList().subscribe((data) => {
+      const titleList = new Set(),
+        departmentList = new Set(),
+        categoryList = new Set(),
+        stateList = new Set(),
+        ownerList = new Set();
       data.map((elem) => {
-        this.filterOptionsList[0].dataList.push({
-          optionName: elem.title,
-          checked: false,
-        });
-        this.filterOptionsList[1].dataList.push({
-          optionName: elem.category,
-          checked: false,
-        });
-        this.filterOptionsList[2].dataList.push({
-          optionName: elem.department,
-          checked: false,
-        });
-        this.filterOptionsList[3].dataList.push({
-          optionName: elem.state,
-          checked: false,
-        });
-        this.filterOptionsList[4].dataList.push({
-          optionName: elem.owner,
-          checked: false,
+        titleList.add(elem.title);
+        categoryList.add(elem.category);
+        departmentList.add(elem.department);
+        stateList.add(elem.state);
+        ownerList.add(elem.owner);
+      });
+
+      this.filterOptionsList.forEach((filterOption, index) => {
+        const optionList = [
+          titleList,
+          categoryList,
+          departmentList,
+          stateList,
+          ownerList,
+        ][index];
+        filterOption.dataList = Array.from(optionList).map((optionName) => {
+          return {
+            optionName,
+            checked: false,
+          } as IOption;
         });
       });
-      console.log(this.filterOptionsList[0].dataList);
-      // this.filterOptionsList[0].dataList = [
-      //   ...new Set(data.map((elem) => elem.title)),
-      // ];
-      // this.filterOptionsList[1].dataList = [
-      //   ...new Set(data.map((elem) => elem.category)),
-      // ];
-      // this.filterOptionsList[2].dataList = [
-      //   ...new Set(data.map((elem) => elem.department)),
-      // ];
-      // this.filterOptionsList[3].dataList = [
-      //   ...new Set(data.map((elem) => elem.state)),
-      // ];
-      // this.filterOptionsList[4].dataList = [
-      //   ...new Set(data.map((elem) => elem.owner)),
-      // ];
     });
   }
-  selectedOptions: string[] = [];
-
   updateDropdownTitle(item: FilterOption): string {
-    const selectedCount = this.selectedOptions.filter((option) =>
-      item.dataList.map((elem) => elem.checked)
-    ).length;
+    const selectedCount = item.dataList.filter((elem) => elem.checked).length;
+    const optionsCount = item.dataList.length;
 
     this.updateOptionsListSelection(item, selectedCount);
-    const optionsCount = item.dataList.length;
+
     if (selectedCount === 0) {
       return item.title;
     } else if (selectedCount === optionsCount) {
-      return 'All ' + item.title;
+      return 'All selected';
     } else if (selectedCount < optionsCount && selectedCount > 1) {
       return 'Multiple selected';
     } else {
-      return `item selected`;
+      return `${item.dataList.filter((elem) => elem.checked)[0].optionName}`;
     }
   }
 
-  onFilterOptionSelect(event: any, option: string): void {
-    const selectedOption = this.filterOptionsList.find((item) =>
-      item.dataList.map((elem) => elem.checked)
-    );
-
-    if (event.checked) {
-      this.selectedOptions.push(option);
-    } else {
-      const index = this.selectedOptions.indexOf(option);
-      if (index > -1) {
-        this.selectedOptions.splice(index, 1);
-      }
-    }
-  }
   updateOptionsListSelection(item: FilterOption, optionSelected: any) {
     optionSelected > 0 ? (item.selected = true) : (item.selected = false);
   }
-  allComplete: boolean = false;
 
   updateAllComplete(item: any) {
     this.allComplete =
@@ -128,6 +102,12 @@ export class FilterOPtionsComponent implements OnInit {
     if (item.dataList == null) {
       return;
     }
-    item.dataList.forEach((t) => (t.checked = true));
+    item.dataList.forEach((t) => (t.checked = completed));
+  }
+
+  getUniqueValues(item: string): IOption[] {
+    let arr: IOption[] = [];
+    arr.push({ optionName: item, checked: false });
+    return [...new Set(arr)];
   }
 }

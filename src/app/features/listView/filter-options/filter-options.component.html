@@ -12,16 +12,15 @@
       <span>{{ updateDropdownTitle(item) }}</span>
     </button>
     <ul class="dropdown-menu">
-      <p>
-        <mat-checkbox
-          class="example-margin"
-          [checked]="allComplete"
-          [indeterminate]="someComplete(item)"
-          (change)="setAll($event.checked, item)"
-        >
-          Select All
-        </mat-checkbox>
-      </p>
+      <mat-checkbox
+        class="example-margin"
+        [color]="checkBoxColor"
+        [checked]="allComplete"
+        [indeterminate]="someComplete(item)"
+        (change)="setAll($event.checked, item)"
+      >
+        Select All
+      </mat-checkbox>
       <div class="input-group mb-3">
         <span class="input-group-text material-icons" id="basic-addon1"
           >search</span
